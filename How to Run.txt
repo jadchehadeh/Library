@@ -1,0 +1,27 @@
+Typically if you use other DBMS than sqlite a small changes need to be made for the code in setting.py file in main project's directory to register the database you use 
+then you should run migrations commands
+
+How To Run:
+1-Navigate to the link and clone the github repository
+
+
+2-install Dependecies:pip install -r requirments.txt
+
+
+3-Configure database to adapt the project with you own DBMS in setting.py file inside the main project root directory (library) .sample for using postgresql:DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': config('DB_NAME'),
+        'USER': config('DB_USER'),
+        'PASSWORD': config('DB_PASSWORD'),
+        'HOST': config('DB_HOST', default='localhost'),
+        'PORT': config('DB_PORT', default='5432'),
+    }
+
+}
+4-Run migration :python manage.py migrate
+
+5-Load the existing data python manage.py loaddata data.json
+
+6-Enjoy!!
+
