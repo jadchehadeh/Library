@@ -1,0 +1,90 @@
+{% extends "base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block title %}Library-Register{% endblock %}
+
+{% block content %}
+<style type="text/css">
+    form {
+  background-color: rgb(91,120,138); /* Light background color */
+  border: 1px solid #ddd; /* Light gray border */
+  border-radius: 10px; /* Rounded corners */
+  padding: 20px; /* Adequate padding for content */
+  width: 60%; /* Adjusted width */
+  margin: 0 auto; /* Center the form horizontally */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle box shadow */
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+/* Add some spacing between form elements */
+form input[type="text"],
+form input[type="email"],
+form input[type="file"],
+form input[type="number"],
+form input[type="password"] {
+  margin-bottom: 10px;
+}
+.errorlist{
+    color:red;
+}
+/* Style form inputs and file input as previously suggested */
+form input[type="text"],
+form input[type="email"],
+form input[type="file"],
+form input[type="number"],
+form input[type="password"] {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 10px;
+  background-color: #f5f5f5;
+  color: #333;
+  font-size: 18px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s ease;
+}
+
+/* Hover effect for form inputs */
+input[type="text"]:hover,
+input[type="email"]:hover,
+input[type="file"]:hover {
+  background-color: #e0e0e0;
+  transform: scale(1.02);
+}
+
+/* Focus style for form inputs */
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="file"]:focus {
+  background-color: #fff;
+  transform: scale(1.02);
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+  outline: none;
+}
+
+</style>
+ <div class='content-section'>
+     <form method='POST'>
+         {% csrf_token %}
+         <fieldset class='form-group'>
+             <legend class='border-bottom mb-4'>
+                 Register Now
+             </legend>
+             {{form.as_p}}
+         </fieldset>
+         <div class='form-group'>
+             <button class='btn btn-success' type='submit'>Login</button>
+
+         </div>
+     </form>
+     <div class='border-top pt-3'>
+        <small class='text-muted'>Create a Account ?</small><a class='ml-2' href="/register">SignUp</a>
+         
+     </div>
+ </div>
+
+{% endblock %}
+
+

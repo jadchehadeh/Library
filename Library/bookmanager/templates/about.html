@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Library-About{% endblock %}
+
+{% block content %}
+<style type="text/css">
+    body {
+    background: linear-gradient(-80deg, black, white,gray);
+    background-size: 400% 400%;
+    animation: gradient 15s ease infinite;
+}
+
+@keyframes gradient {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+</style>
+<link rel="stylesheet" type="text/css" href="{% static 'bookmanager/about.css' %}">
+<div class="container mt-5 ">
+        <div class="row">
+            <div class="col-md-4">
+                <h1 class="display-4 animate-charcter">About Us</h1>
+
+                <p class="lead">This is a demo about us for the library django application that will evaluate my exceptance upon its bases.The project was  assigned to my by Mr. Ahmad Mouaness</p>
+            </div>
+            <div class="col-md-7">
+                <img src="{% static 'media/bookshelf.jpg' %}" class="img-fluid rounded-circle" alt="About Us Image">
+            </div>
+        </div>
+    </div>
+
+    <div class="container mt-5">
+        <h2 class="animate-charcters">Project Description-Functionality</h2>
+        <p>I was required to build a simple DJANGO application for managing a library it performs serveral actions mainly CRUD opperations using generic classes provided by DJANGO framework.</p>
+    </div>
+<h2 class="animate-charcter m-2">About Me</h2>
+    <div class="container mt-3 jad">
+        
+        <div class="row">
+            <div class="col-md-6">
+                <div class=" mb-3">
+                   
+                    <div class="" style='background-color: #f9f9f9'>
+                        <h5 class="" style='font-size:28px'>Im Jad Nabih Chehade, recently graduated from the Lebanese University Faculty of Technology majoring business computer</h5>
+                       
+
+                        <p class="card-text" style='font-size:20px;'>Passionate about leverging my skill and knowledge in business computer to drive digital transformation and seeking to gain practical experience and make positive impact in professional world</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card mb-3">
+                    <img src="{% static 'media/jad.jpeg' %}" class="card-img-top">
+
+
+                    <div class="card-body">
+                        <h5 class="card-title">Jad Chehade</h5>
+                        <p class="card-text">Developer</p>
+                    </div>
+                </div>
+            </div>
+
+            
+           
+            
+        </div>
+    </div>
+
+{% endblock %}
+
+

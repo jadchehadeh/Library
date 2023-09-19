@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+{% load static %}
+{%block title%}Library-home{%endblock%}
+
+{% block content %}
+<style type="text/css">
+    body {
+    background: linear-gradient(-80deg, black, white,gray);
+    background-size: 400% 400%;
+    animation: gradient 15s ease infinite;
+}
+
+@keyframes gradient {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+</style>
+	<div class="container">
+    <h1 class="text-center mt-4">Search Books</h1>
+    <form method="GET" action="{% url 'search_books_not' %}" class="text-center mt-4">
+        <div class="input-group">
+            <input type="text" name="q" value="{{ query }}" class="form-control" placeholder="Search books">
+            <div class="input-group-append">
+                <button type="submit" class="btn btn-primary">Search</button>
+            </div>
+        </div>
+    </form>
+
+    {% if books|length == 0 %}
+    <div class="text-center mt-4">
+        <h3>There are no available books to preview.</h3>
+    </div>
+    {% endif %}
+
+    <div class="row mt-4">
+        {% for book in books %}
+        <div class="col-lg-4 col-md-6 mb-4">
+            <div class="card">
+                <img src="{{ book.image.url }}" class="card-img-top" alt="{{ book.title }}">
+                <div class="card-body">
+                    <h5 class="card-title">{{ book.title }}</h5>
+                    <p class="card-text"><strong>Author:</strong> {{ book.author }}</p>
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item"><strong>Publication Year:</strong> {{ book.publication_year }}</li>
+                    <li class="list-group-item"><strong>Category:</strong> {{ book.category }}</li>
+                </ul>
+                
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+   {% if is_paginated %}
+        {% if page_obj.has_previous %} <!--here we access paginated between pages -->
+            <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.previous_page_number }}">Previous</a>
+        {% endif %}
+        {% for num in page_obj.paginator.page_range %}
+            <!-- here we want to print current book and some books aside of it -->
+            {% if page_obj.number == num %}
+                <a class="btn btn-info mb-4" href="?page={{num}}">{{num}}</a>
+            {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'+3' %}    
+                <a class="btn btn-outline-info mb-4" href="?page={{num}}">{{num}}</a>
+            {% endif %}
+        {% endfor %}
+        {% if page_obj.has_next %} <!-- here if the more books so we need to display a next page -->
+            <a class="btn btn-outline-info mb-4" href="?page={{page_obj.next_page_number}}">Next</a>
+            <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.paginator.num_pages }}">Last</a>
+        {% endif %}
+    {% endif %}
+	
+{% endblock content %}

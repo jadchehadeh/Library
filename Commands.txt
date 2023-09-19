@@ -1,0 +1,30 @@
+1-pip installation:
+python -m ensurepip --default-pip
+
+2-Checking pip installation
+pip --version
+
+3-Start Virtual Enviroment
+virtualenv venv
+
+4-Activation the Virtual Enviroment
+Path\env\Scripts\activate
+
+5-Django Installation
+pip install Django
+
+6-Starting my django application
+django-admin startproject Library
+
+7-Check the local server
+python manage.py runserver
+
+8-Work With images
+pip install Pillow
+
+9-Installation of the django rest frame work
+pip install djangorestframework
+
+10-Starting new app to handle registration of users
+ django-admin startapp users(this app can be used in multiple django application because it contains it own urls and views.py files)
+

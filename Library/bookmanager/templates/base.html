@@ -1,0 +1,158 @@
+
+<!-- This Page is main for all pages because it contains the repeated codes -->
+{% load static %}
+<html>
+<head>
+	<!-- Required meta tags -->
+  <title>{% block title %}{% endblock %} </title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+    <link rel="stylesheet" type="text/css" href="{% static 'bookmanager/main.css' %}">
+
+ <style type="text/css">
+   body {
+  background: #fafafa;
+  color: #333333;
+  margin-top: 5rem;
+}
+.mr-4{
+  text-transform: uppercase;
+  background-image: linear-gradient(
+    -225deg,
+    #231557 0%,
+    #44107a 29%,
+    #ff1361 67%,
+    #fff800 100%
+  );
+  background-size: auto auto;
+  background-clip: border-box;
+  background-size: 200% auto;
+  color: #fff;
+  background-clip: text;
+  text-fill-color: transparent;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: textclip 2s linear infinite;
+  display: inline-block;
+      font-size: 25px;
+}
+
+/*This keyframe specifies the animation end where the background position is moved to 200% of the element width from the left creating a sliding effect.
+this styling is used here and not in the static folder because i faced problem editing css files that it tooks very long to apear on the browser it only appears when i reset the server or even when restarting my laptop*/
+
+@keyframes textclip { 
+  to {
+    background-position: 200% center;
+  }
+}
+ </style>
+	
+  
+</head>
+<body>
+	<header class="site-header">
+  <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-top">
+    <div class="container">
+      <a class="navbar-brand mr-4"  id='menu' href="#">Library Managment</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarToggle">
+        <div class="navbar-nav mr-auto">
+
+          {% if user.is_authenticated %}
+            
+          <a class="nav-item nav-link" href="/" style="font-family: cursive">Home</a>
+          <a class="nav-item nav-link" href="/about"  style="font-family: cursive">About</a> 
+          <a class="nav-item nav-link" href="/newbook"  style="font-family: cursive">Add Book</a> 
+          {% else %}
+            
+            
+             <a class="nav-item nav-link" href="/listbooks" style="font-family: cursive">Home</a>
+             <a class="nav-item nav-link" href="/about"  style="font-family: cursive">About</a> 
+          {% endif %}
+
+
+
+
+
+        </div>
+        <!-- Navbar Right Side -->
+        <div class="navbar-nav">
+          {% if user.is_authenticated %}
+            <a class="nav-item nav-link" href="/logout"  style="font-family: cursive">logout</a>  
+          {% else %}
+            <a class="nav-item nav-link" href="/login"  style="font-family: cursive">Login</a>
+            <a class="nav-item nav-link" href="/register"  style="font-family: cursive">Register</a>
+          {% endif %}
+          
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>
+	<main role="main" class="container">
+  <div class="row">
+    <div class="col-md-8">
+       {% if messages %}
+          {% for message in messages %}
+            <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+          {% endfor %}
+        {% endif %}
+        {% block content %}{% endblock %}
+      
+    </div>
+    <div class="col-md-4">
+      <div class="content-section">
+        <h3>Suggest a Book</h3>
+        <p class='text-muted'>You can put any information here you'd like.
+          <ul class="list-group">
+            <li class="list-group-item list-group-item-light">Book Title</li>
+            <li class="list-group-item list-group-item-light">Book's Author</li>
+            <li class="list-group-item list-group-item-light">Book's Release date</li>
+            <li class="list-group-item list-group-item-light"><button class='btn btn-outline-primary'>Suggest</button></li>
+          </ul>
+        </p>
+      </div>
+    </div>
+  </div>
+</main>	
+<footer class="site-footer">
+  <nav class="navbar navbar-expand-md navbar-dark bg-steel">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <h5 class='text-white' id='menu'>Contact Us</h5>
+                <p class='text-white'>If you have any questions , feel free to reach out to me.</p>
+                <ul class='text-white' class="list-unstyled">
+                    <li><i class="fas fa-envelope"></i> Email: chehadeh.jad1@gmail.com</li>
+                    <li><i class="fas fa-phone"></i> Phone: +961 788 99 136</li>
+                </ul>
+            </div>
+            <div class="col-md-6">
+                <h5 class='text-white' id='menu'>Follow Us</h5>
+                <p class='text-white'>Stay connected with me on social media for updates and news.</p>
+                <ul class="list-inline text-white">
+                    
+                    </i></a></li>
+                    <li class="list-inline-item"><a href="#"><i class="fab fa-instagram"></i></a></li>
+                    <li class="list-inline-item"><a href="#"><i class="fab fa-linkedin"></i></a></li>
+                </ul>
+                <p style='color:white'>@ Jad Chehade-2023</p>
+            </div>
+        </div>
+    </div>
+  </nav>
+</footer>
+
+
+	 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+</html>

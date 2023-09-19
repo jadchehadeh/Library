@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+    <h1 class="text-center mt-4">Search Books</h1>
+    <form method="GET" action="{% url 'search_books' %}" class="text-center mt-4">
+        <div class="input-group">
+            <input type="text" name="q" value="{{ query }}" class="form-control" placeholder="Search books">
+            <div class="input-group-append">
+                <button type="submit" class="btn btn-primary">Search</button>
+                <a href='/' class="btn btn-danger">reset</a>
+            </div>
+        </div>
+    </form>
+
+    {% if books|length == 0 %}
+    <div class="text-center mt-4">
+        <h3>There are no available books to preview.</h3>
+    </div>
+    {% endif %}
+
+    <div class="row mt-4">
+        {% for book in books %}
+        <div class="col-lg-4 col-md-6 mb-4">
+            <div class="card">
+                <img src="{{ book.image.url }}" class="card-img-top" alt="{{ book.title }}">
+                <div class="card-body">
+                    <h5 class="card-title">{{ book.title }}</h5>
+                    <p class="card-text"><strong>Author:</strong> {{ book.author }}</p>
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item"><strong>Publication Year:</strong> {{ book.publication_year }}</li>
+                    <li class="list-group-item"><strong>Category:</strong> {{ book.category }}</li>
+                </ul>
+                <div class="card-footer d-flex justify-content-between">
+                    <a class="btn btn-danger btn-sm" href="delete/{{ book.id }}">Delete</a>
+                    <a class="btn btn-outline-success btn-sm" href="update/{{ book.id }}">Update</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+
+
+{% endblock %}

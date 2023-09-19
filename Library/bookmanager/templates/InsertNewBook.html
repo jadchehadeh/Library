@@ -1,0 +1,87 @@
+{% extends "base.html" %}
+{% block content %}
+{% load static %}
+<style type="text/css">
+	
+
+    body {
+    background: linear-gradient(-80deg, black, white, gray);
+    background-size: 400% 400%;
+    animation: gradient 15s ease infinite;
+}
+
+@keyframes gradient {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+form {
+  background-color: rgb(91,120,138); 
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 20px;
+  width: 60%; 
+  margin: 0 auto;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+  margin-bottom: 20px;
+}
+
+
+form input[type="text"],
+form input[type="email"],
+form input[type="file"],
+form input[type="number"] {
+  margin-bottom: 10px;
+}
+
+/* Style form inputs and file input as previously suggested */
+form input[type="text"],
+form input[type="email"],
+form input[type="file"],
+form input[type="number"] {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 10px;
+  background-color: #f5f5f5;
+  color: #333;
+  font-size: 18px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s ease;
+}
+
+/* Hover effect for form inputs */
+input[type="text"]:hover,
+input[type="email"]:hover,
+input[type="file"]:hover {
+  background-color: #e0e0e0;
+  transform: scale(1.02);
+}
+
+/* Focus style for form inputs */
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="file"]:focus {
+  background-color: #fff;
+  transform: scale(1.02);
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+  outline: none;
+}
+
+</style>
+</head>
+  <h2 align='center'>Create a New Book</h2>
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" id='submit' class='btn btn-info btn-lg' align='center'>Save</button>
+  </form>
+  {% endblock %}
