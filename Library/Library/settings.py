@@ -21,7 +21,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-cjd7q@1-4i=r7#3^+!omkjlf!a!w++_hyg2_vww@1lgrclt$q0'
+#here is the Securit Key place i removed it because it a public repository#
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -79,6 +79,7 @@ WSGI_APPLICATION = 'Library.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
+#Database settings (username,root,password should be changes here to adapt the project with your DBMS ) dont forget to runmigration#
 
 DATABASES = {
     'default': {
